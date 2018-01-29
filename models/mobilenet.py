@@ -37,7 +37,7 @@ class MobileNet:
     def create_train_op(self):
         global_step = tf.train.get_or_create_global_step()
         self.learning_rate = tf.train.exponential_decay(FLAGS.learning_rate, global_step, FLAGS.decay_steps,
-                                                        FLAGS.decay_rate, name='learning_rate')
+                                                        FLAGS.decay_rate, staircase=True, name='learning_rate')
         optimizer = tf.train.RMSPropOptimizer(self.learning_rate, decay=0.9, momentum=0.9, epsilon=1.0)
 
         update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
