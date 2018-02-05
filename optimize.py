@@ -25,7 +25,11 @@ tf.app.flags.DEFINE_float('decay_rate', 0.98, 'Factor by which the learning rate
 # Model regularization
 tf.app.flags.DEFINE_float('depth_multiplier', 1.0, 'Float multiplier for the number of channels in convolutions')
 tf.app.flags.DEFINE_float('weight_decay', 0.00004, 'Amount of weight decay used for regularization')
+tf.app.flags.DEFINE_bool('regularize_depthwise', False, 'Whether or not apply regularization on depthwise layers')
 tf.app.flags.DEFINE_float('dropout_keep_prob', 0.999, 'Probability to keep neurons during training with dropout')
+
+# Optimization goal
+tf.app.flags.DEFINE_bool('optimize_learning_rate', True, 'If True, optimize learning rate, else model regularization')
 
 FLAGS = tf.app.flags.FLAGS
 

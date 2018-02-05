@@ -15,7 +15,8 @@ class MobileNet:
         self.create_summaries()
 
     def create_model(self, inputs, num_classes, is_training):
-        with slim.arg_scope(mobilenet_v1_arg_scope(is_training)):
+        with slim.arg_scope(mobilenet_v1_arg_scope(is_training, FLAGS.weight_decay,
+                                                   regularize_depthwise=FLAGS.regularize_depthwise)):
             self.logits, self.end_points = mobilenet_v1(inputs, num_classes, FLAGS.dropout_keep_prob, is_training,
                                                         depth_multiplier=FLAGS.depth_multiplier)
 
